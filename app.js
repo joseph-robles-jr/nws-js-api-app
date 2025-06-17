@@ -85,28 +85,6 @@ function displayForecast(data) {
     weatherProperties.innerHTML = '';
 
     const properties = data.properties;
-    // var rawDate = new Date(properties.generatedAt);
-    // var year = rawDate.getFullYear().toString();
-    // var month = rawDate.getMonth(); //needs to be converted from month number to month name.
-    // var day = rawDate.getDate().toString();
-    // var hour = rawDate.getHours().toString();
-    // var minute = rawDate.getMinutes().toString();
-    // var seconds = rawDate.getSeconds().toString();
-
-    // try {
-    //     month = convertNumberToMonth(month);
-    // }
-    // catch (error) {
-    //     console.error("Error Parsing month: ", error.message);
-
-    //     if (Number.isInteger(month)) {
-    //         month = `${month} - `;
-    //     }
-    //     else {
-    //         month = '';
-    //     }
-    // }
-
     let createForecastDateJSON = createForecastDateString(data);
 
 
