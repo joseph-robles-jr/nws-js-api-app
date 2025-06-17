@@ -27,11 +27,54 @@ function convertNumberToMonth(monthInt) {
     }
     else if (Number.isInteger(monthInt) && (!monthInt <= 12 || !monthInt >= 1)) {
 
-        throw new Error( `${monthInt} must be between 1 and 12.`);
+        throw new Error(`${monthInt} must be between 1 and 12.`);
     }
     else {
         throw new Error(`${monthInt} produced an unknown error. Please provide an integer between 1 and 12.`);
     }
+}
+
+function createForecastDateString(data) {
+    let dateStringObj = {
+        month: "", 
+        day: "",
+        year: "",
+        hour: "",
+        minute: "",
+        seconds: "" 
+    };
+
+    const properties = data.properties;
+    var rawDate = new Date(properties.generatedAt);
+    var parsedYear = rawDate.getFullYear().toString();
+    var parsedDay = rawDate.getDate().toString();
+    var parsedHour = rawDate.getHours().toString();
+    var parsedMinute = rawDate.getMinutes().toString();
+    var parsedSeconds = rawDate.getSeconds().toString();
+
+    var month = rawDate.getMonth(); //needs to be converted from month number to month name.
+    try {
+        month = convertNumberToMonth(month);
+    }
+    catch (error) {
+        console.error("Error Parsing month: ", error.message);
+
+        if (Number.isInteger(month)) {
+            month = `${month} - `;
+        }
+        else {
+            month = '';
+        }
+    }
+
+    dateStringObj.month = month;
+    dateStringObj.day = parsedDay;
+    dateStringObj.year = parsedYear;
+    dateStringObj.hour = parsedHour;
+    dateStringObj.minute = parsedMinute;
+    dateStringObj.seconds = parsedSeconds;
+
+    return dateStringObj;  
 }
 
 function displayForecast(data) {
@@ -42,33 +85,33 @@ function displayForecast(data) {
     weatherProperties.innerHTML = '';
 
     const properties = data.properties;
-    var rawDate = new Date(properties.generatedAt);
-    var year = rawDate.getFullYear().toString();
-    var month = rawDate.getMonth(); //needs to be converted from month number to month name.
-    var day = rawDate.getDate().toString();
-    var hour = rawDate.getHours().toString();
-    var minute = rawDate.getMinutes().toString();
-    var seconds = rawDate.getSeconds().toString();
+    // var rawDate = new Date(properties.generatedAt);
+    // var year = rawDate.getFullYear().toString();
+    // var month = rawDate.getMonth(); //needs to be converted from month number to month name.
+    // var day = rawDate.getDate().toString();
+    // var hour = rawDate.getHours().toString();
+    // var minute = rawDate.getMinutes().toString();
+    // var seconds = rawDate.getSeconds().toString();
 
-    try {
-        month = convertNumberToMonth(month); 
-    }
-    catch (error) {
-        console.error("Error Parsing month: ", error.message);
-        
-        if (Number.isInteger(month)) { 
-        month = `${month} - `;
-        }
-        else {
-            month = '';
-        }
-    }
+    // try {
+    //     month = convertNumberToMonth(month);
+    // }
+    // catch (error) {
+    //     console.error("Error Parsing month: ", error.message);
 
+    //     if (Number.isInteger(month)) {
+    //         month = `${month} - `;
+    //     }
+    //     else {
+    //         month = '';
+    //     }
+    // }
 
-    // ${month} ${day}, ${year} at ${hour}:${minute}:${seconds}
+    let createForecastDateJSON = createForecastDateString(data);
+
 
     weatherProperties.innerHTML = `<h4>Weather Units: ${properties.units.toUpperCase()}<h4>
-        <h4>Forecast generated on ${month} ${day}, ${year} at ${hour}:${minute}:${seconds} UTC</h4>`;
+        <h4>Forecast generated on ${createForecastDateJSON.month} ${createForecastDateJSON.day}, ${createForecastDateJSON.year} at ${createForecastDateJSON.hour}:${createForecastDateJSON.minute}:${createForecastDateJSON.seconds} UTC</h4>`;
 
     const periods = data.properties.periods;
 
