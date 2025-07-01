@@ -3,21 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pocatello NWS 7-Day Forecast</title>
+    <title>NWS 7-Day Forecast</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <p>Future FEATURE: add USPS postal code selection. <a href="https://postalpro.usps.com/ZIP_Locale_Detail">Postal Codes download from USPS</a>. This will require associating zip codes with NWS offices (and 3 digit codes). </p.>
         <a href="rawDump.html">Raw API Dump</a>
-        <h1>Pocatello NWS 7-Day Forecast</h1>
-        <button id="fetchForecast">Fetch Forecast</button>
+        <h1>National Weather Service 7-Day Forecast</h1>
+        <button id="fetchForecast">Fetch Forecast For Your Locations</button>
     </header>
     <main>
         <div id="weatherProperties"></div>
         <div id="forecastsContainer">
-            <div id="forecastContainer"></div>
+            <div id="forecastContainer">
+            </div>
         </div>
     </main>
     <script src="app.js"></script>

@@ -16,6 +16,19 @@ button {
     color: white;
 }
 
+button:hover {
+    color: white;
+    background-color: #c07abc;
+    transform: scale(1.05);
+}
+
+a {
+    color: antiquewhite;
+}
+a:hover {
+    color: #c07abc;
+}
+
 #weatherProperties {
     text-align: center;
     grid-row: 1;
@@ -32,11 +45,19 @@ button {
     padding-inline: 20px;
     margin: 15px;
     max-width: 4000px;
-    height: 300px;
+    height: fit-content;
     background-color: #6c7375;
     border-radius: 10px;
 }
-
+.weatherimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    border-radius: 10px;
+    max-height: 100px;
+    max-width: 110px;
+}
 #forecastContainer h2 {
     text-align: center;
 }
