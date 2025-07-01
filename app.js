@@ -9,14 +9,14 @@ async function fetchForecast() {
         const lat = location.lat;
         const lon = location.lon;
 
+        const NWSofficeLocation = await getNWSoffice();
+        // const NWSofficeLocation = {'officeCallsign': 'Pocatello Filler', 'officeLocation': 'POCATELLO'};
         const forecastUrl = await fetchLatLonAPIurl(lat, lon);
 
         const response = await fetch(forecastUrl);
         const data = await response.json();
-        displayForecast(data, lat, lon);
-
-
-        getNWSoffice();
+        displayForecast(data, lat, lon, NWSofficeLocation.officeCallsign || 'Unknown', NWSofficeLocation.officeLocation || 'Unknown');
+       
 
     }
     catch (error) {
@@ -31,43 +31,62 @@ async function getNWSoffice() {
 
         const parts = forecastAPI.split("/");
         const officeCallsign = parts[4]; // This pulls the office 3 digit ID from the URL.
-        try{
-        const officeLocation = NWSofficeIDs[officeCallsign];
+    
+        const officeLocation =  NWSofficeIDs[officeCallsign] || null;
         console.log(officeCallsign);
         console.log(officeLocation);
-        return officeLocation;
-        }
-        catch {
-            return officeCallsign;
-        }
+        console.log(officeCallsign, officeLocation);
+        return {officeCallsign, officeLocation: officeLocation};
     }
-    catch {
-        (error =>
-            console.log('There is an error fiding the NWS office.', error)
-        )
+    catch (error) {
+        console.log('There is an error fiding the NWS office.', error);
+        return {officeCallsign: null, officeLocation: null };
+    
     }
+
 
 }
 
 function getLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                resolve({ lat, lon });
-            },
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    resolve({ lat, lon });
+                },
                 (error) => {
-                    reject(error);
-                }
+                    reject(new Error(`Geolocation error: ${error.message}`));
+                },
+                { timeout: 10000 }
             );
-
         } else {
-            reject(new Error('Geolocation is not allowed by user.'));
+            reject(new Error('Geolocation is not supported or permission was denied.'));
         }
-
-    })
+    });
 }
+function getLocation() { 
+    //this function is slow and often times out. Find a way to speed it up.
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    resolve({ lat, lon });
+                },
+                (error) => {
+                    reject(new Error(`Geolocation error: ${error.message}`));
+                },
+                { timeout: 10000 }
+            );
+        } else {
+            reject(new Error('Geolocation is not supported or permission was denied.'));
+        }
+    });
+}
+
 
 async function fetchLatLonAPIurl(lat, lon) {
     const apiurl = `https://api.weather.gov/points/${lat},${lon}`;
@@ -84,7 +103,7 @@ async function fetchLatLonAPIurl(lat, lon) {
 
 function convertNumberToMonth(monthInt) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    monthInt = monthInt - 1;
+    
     if (Number.isInteger(monthInt) && monthInt <= 12 && monthInt >= 1) {
         return months[monthInt - 1];
     }
@@ -144,7 +163,7 @@ function createForecastDateString(data) {
     return dateStringObj;
 }
 
-function displayForecast(data, lat, lon) {
+function displayForecast(data, lat, lon, NWSofficeCallsign, NWSofficeLocation) {
     const forecastContainer = document.getElementById('forecastContainer');
     forecastContainer.innerHTML = ''; // Clear previous content
 
@@ -155,7 +174,7 @@ function displayForecast(data, lat, lon) {
     let createForecastDateJSON = createForecastDateString(data);
 
 
-    weatherProperties.innerHTML = `<h4> Forecast at your location (${lat}, ${lon})</h4>
+    weatherProperties.innerHTML = `<h4> Forecast at your location (${lat}, ${lon}) from NWS Office ${NWSofficeCallsign} ${NWSofficeLocation}</h4>
         <h4>Weather Units: ${properties.units.toUpperCase()}</h4>
         <h4>Forecast generated on ${createForecastDateJSON.month} ${createForecastDateJSON.day}, ${createForecastDateJSON.year} at ${createForecastDateJSON.hour}:${createForecastDateJSON.minute}:${createForecastDateJSON.seconds} UTC</h4>`;
 
