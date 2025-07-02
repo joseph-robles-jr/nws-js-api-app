@@ -1,6 +1,7 @@
 body {
     background-color: #2a2e2f;
     color: whitesmoke;
+    font-family: 'Verdana', sans-serif;
 }
 
 header {
@@ -25,6 +26,7 @@ button:hover {
 a {
     color: antiquewhite;
 }
+
 a:hover {
     color: #c07abc;
 }
@@ -49,6 +51,7 @@ a:hover {
     background-color: #6c7375;
     border-radius: 10px;
 }
+
 .weatherimg {
     display: block;
     margin-left: auto;
@@ -58,6 +61,7 @@ a:hover {
     max-height: 100px;
     max-width: 110px;
 }
+
 #forecastContainer h2 {
     text-align: center;
 }
