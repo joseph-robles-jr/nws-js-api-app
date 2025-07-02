@@ -52,6 +52,15 @@ a:hover {
     border-radius: 10px;
 }
 
+#forecastDump {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: fit-content;
+}
+
 .weatherimg {
     display: block;
     margin-left: auto;

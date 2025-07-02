@@ -8,12 +8,16 @@
 </head>
 
 <body>
-    <h1>Pocatello NWS 7-Day Forecast</h1>
-    <div>
+
+    <header>
         <a href="index.html">HOME</a>
-    </div>
-    <button id="fetchForecast">Fetch Forecast</button>
-    <pre id="forecastData"></pre>
+        <h1>National Weather Service 7-Day Forecast</h1>
+        <button id="fetchForecast">Fetch Raw API Response</button>
+    </header>
+
+
+    <h4 id="preID"></h4>    
+    <pre id="forecastDump"></pre>
 
     <script src="rawApp.js"></script>
 </body>
