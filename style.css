@@ -102,3 +102,53 @@ width: fit-content;
 margin: 20px;
 margin-bottom: 20px;
 }
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 0;
+  }
+
+  header {
+    padding: 1.5rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .forecast-grid {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+    gap: 1rem;
+  }
+
+  .forecast-grid div {
+    padding: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .weatherimg {
+    float: none;
+    display: block;
+    margin: 0 auto 1rem auto;
+  }
+
+  #forecastDump {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #preID {
+    margin: 1rem;
+  }
+}
