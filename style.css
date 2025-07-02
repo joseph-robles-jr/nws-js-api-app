@@ -1,82 +1,80 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #2a2e2f;
-    color: whitesmoke;
-    font-family: 'Verdana', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
 header {
-    text-align: center;
+  background-color: #473c73;
+  color: white;
+  padding: 2rem;
+  text-align: center;
 }
 
 button {
-    padding-inline: 20px;
-    padding-block: 12px;
-    background-color: #473c73;
-    border-radius: 10px;
-    border-width: 0;
-    color: white;
+  background-color: #7d71b6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-    color: white;
-    background-color: #c07abc;
-    transform: scale(1.05);
+  background-color: #30294e;
 }
 
-a {
-    color: antiquewhite;
-}
-
-a:hover {
-    color: #c07abc;
+main {
+  padding: 2rem;
 }
 
 #weatherProperties {
-    text-align: center;
-    grid-row: 1;
+  margin-bottom: 2rem;
 }
 
-#forecastsContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.forecast-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
-#forecastContainer div {
-    padding-block: 20px;
-    padding-inline: 20px;
-    margin: 30px;
-    margin-inline: 70px;
-    max-width: 4000px;
-    height: fit-content;
-    background-color: #6c7375;
-    border-radius: 10px;
+.forecast-grid div {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
 }
 
-#forecastDump {
-    background-color: white;
-    color: black;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    width: fit-content;
+.forecast-grid div:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#preID {
-    margin: 10px;
-    margin-bottom: 20px;
+.forecastText p {
+  margin: 0.5rem 0;
 }
 
 .weatherimg {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 15%;
-    border-radius: 10px;
-    max-height: 100px;
-    max-width: 110px;
+    padding-top: 5px;
+    padding-right: 5px;
+  width: auto;
+  height: 60px;
+  border-radius: 10px;
+  float: right;
+  margin-left: 1rem;
 }
 
-#forecastContainer h2 {
-    text-align: center;
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #e0e0e0;
+  margin-top: 2rem;
 }

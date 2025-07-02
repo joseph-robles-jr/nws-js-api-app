@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NWS 7-Day Forecast</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <a href="rawDump.html">Raw API Dump</a>
+        <h1>National Weather Service 7-Day Forecast</h1>
+        <button id="fetchForecast">Fetch Forecast For Your Locations</button>
+    </header>
+    <main>
+        <div id="weatherProperties"></div>
+        <div id="forecastsContainer">
+            <div id="forecastContainer">
+            </div>
+        </div>
+    </main>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

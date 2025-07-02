@@ -74,7 +74,7 @@ function convertNumberToMonth(monthInt) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     if (Number.isInteger(monthInt) && monthInt <= 12 && monthInt >= 1) {
-        return months[monthInt - 1];
+        return months[monthInt];
     }
     else if (!Number.isInteger(monthInt)) {
         throw new Error(`${monthInt} is NaN. Please enter an integer.`);
