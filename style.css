@@ -116,19 +116,21 @@ margin-bottom: 20px;
   header {
     padding: 1.5rem 1rem;
     font-size: 1.2rem;
+    max-width: fit-content;
   }
 
   main {
-    padding: 1rem;
+    padding: .5rem;
   }
 
   .forecast-grid {
     grid-template-columns: 1fr; /* Stack cards vertically */
-    gap: 1rem;
+    gap: .5rem;
+    
   }
 
   .forecast-grid div {
-    padding: 1rem;
+    padding: .5rem;
   }
 
   button {
