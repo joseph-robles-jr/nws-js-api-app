@@ -9,14 +9,13 @@ async function fetchForecast() {
         const lat = location.lat;
         const lon = location.lon;
 
-        const NWSofficeLocation = await getNWSoffice();
-        // const NWSofficeLocation = {'officeCallsign': 'Pocatello Filler', 'officeLocation': 'POCATELLO'};
         const forecastUrl = await fetchLatLonAPIurl(lat, lon);
+        const NWSofficeLocation = await getNWSoffice(forecastUrl);
 
         const response = await fetch(forecastUrl);
         const data = await response.json();
         displayForecast(data, lat, lon, NWSofficeLocation.officeCallsign || 'Unknown', NWSofficeLocation.officeLocation || 'Unknown');
-       
+
 
     }
     catch (error) {
@@ -24,24 +23,20 @@ async function fetchForecast() {
     }
 }
 
-async function getNWSoffice() {
+async function getNWSoffice(forecastUrl) {
+    // Takes the URL provided by 'fetchLatLonAPIurl()', finds the 3 letter office ID, and looks it up in the 'NWSofficeIDs' array.
     try {
-        const location = await getLocation();
-        const forecastAPI = await fetchLatLonAPIurl(location.lat, location.lon);
 
-        const parts = forecastAPI.split("/");
+        const parts = forecastUrl.split("/");
         const officeCallsign = parts[4]; // This pulls the office 3 digit ID from the URL.
-    
-        const officeLocation =  NWSofficeIDs[officeCallsign] || null;
-        console.log(officeCallsign);
-        console.log(officeLocation);
-        console.log(officeCallsign, officeLocation);
-        return {officeCallsign, officeLocation: officeLocation};
+        const officeLocation = NWSofficeIDs[officeCallsign] || null;
+
+        return { officeCallsign, officeLocation: officeLocation };
     }
     catch (error) {
         console.log('There is an error fiding the NWS office.', error);
-        return {officeCallsign: null, officeLocation: null };
-    
+        return { officeCallsign: null, officeLocation: null };
+
     }
 
 
@@ -66,7 +61,7 @@ function getLocation() {
         }
     });
 }
-function getLocation() { 
+function getLocation() {
     //this function is slow and often times out. Find a way to speed it up.
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -103,7 +98,7 @@ async function fetchLatLonAPIurl(lat, lon) {
 
 function convertNumberToMonth(monthInt) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
+
     if (Number.isInteger(monthInt) && monthInt <= 12 && monthInt >= 1) {
         return months[monthInt - 1];
     }
@@ -174,7 +169,7 @@ function displayForecast(data, lat, lon, NWSofficeCallsign, NWSofficeLocation) {
     let createForecastDateJSON = createForecastDateString(data);
 
 
-    weatherProperties.innerHTML = `<h4> Forecast at your location (${lat}, ${lon}) from NWS Office ${NWSofficeCallsign} ${NWSofficeLocation}</h4>
+    weatherProperties.innerHTML = `<h4> Forecast at your location (${lat}, ${lon}) from NWS Office ${NWSofficeLocation} (${NWSofficeCallsign})</h4>
         <h4>Weather Units: ${properties.units.toUpperCase()}</h4>
         <h4>Forecast generated on ${createForecastDateJSON.month} ${createForecastDateJSON.day}, ${createForecastDateJSON.year} at ${createForecastDateJSON.hour}:${createForecastDateJSON.minute}:${createForecastDateJSON.seconds} UTC</h4>`;
 
@@ -204,7 +199,7 @@ function displayForecast(data, lat, lon, NWSofficeCallsign, NWSofficeLocation) {
 
 const NWSofficeIDs = {
     // office locations sourced from 'https://en.wikipedia.org/wiki/List_of_National_Weather_Service_Weather_Forecast_Offices'
-    
+
     // Alaska Region
     'AFC': 'Anchorage Alaska',
     'AFG': 'Fairbanks Alaska',
@@ -251,7 +246,30 @@ const NWSofficeIDs = {
     'RIW': 'Riverton - Wyoming',
 
     // Easter Region 
+    'CAR': 'Caribou - Maine',
+    'GYX': 'Gray/Portland - Maine',
+    'BOX': 'Boston/Norton - Massachusetts',
+    'PHI': 'Mount Holly/Philidelphia - New Jersey',
+    'ALY': 'Albany - New York',
+    'BGM': 'Binghamton - New York',
+    'BUF': 'Buffalo - New York',
+    'OKX': 'New York/Upton - New York',
+    'MHX': 'Newport/Morehead City - North Carolina',
+    'RAH': 'Raleigh - North Carolina',
+    'ILM': 'Wilmington - Ohio',
+    'PBZ': 'Pittsburgh - Pennsylvania',
+    'CTP': 'State College - Pennsylvania',
+    'CHS': 'charleston - South Carolina',
+    'CAE': 'Columbia - South Carolina',
+    'GSP': 'Greenville/Spartanburg - South Carolina',
+    'BTV': 'Burlington - Vermont',
+    'LWX': 'Baltimore/Washington - Virginia',
+    'RNK': 'Blacksburg/Roanoke - Virginia',
+    'AKQ': 'Wakefield - Virginia',
+    'RLX': 'Charleston - West Virginia',
+    // Pacific Region
 
+    // Southern Region
 
     // Wester Region
     'PIH': 'Pocatello - Idaho',
