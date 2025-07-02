@@ -61,27 +61,6 @@ function getLocation() {
         }
     });
 }
-function getLocation() {
-    //this function is slow and often times out. Find a way to speed it up.
-    return new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    resolve({ lat, lon });
-                },
-                (error) => {
-                    reject(new Error(`Geolocation error: ${error.message}`));
-                },
-                { timeout: 10000 }
-            );
-        } else {
-            reject(new Error('Geolocation is not supported or permission was denied.'));
-        }
-    });
-}
-
 
 async function fetchLatLonAPIurl(lat, lon) {
     const apiurl = `https://api.weather.gov/points/${lat},${lon}`;
