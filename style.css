@@ -45,7 +45,8 @@ a:hover {
 #forecastContainer div {
     padding-block: 20px;
     padding-inline: 20px;
-    margin: 15px;
+    margin: 30px;
+    margin-inline: 70px;
     max-width: 4000px;
     height: fit-content;
     background-color: #6c7375;
@@ -59,6 +60,11 @@ a:hover {
     padding: 20px;
     margin: 10px;
     width: fit-content;
+}
+
+#preID {
+    margin: 10px;
+    margin-bottom: 20px;
 }
 
 .weatherimg {
