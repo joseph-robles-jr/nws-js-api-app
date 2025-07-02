@@ -168,7 +168,7 @@ function displayForecast(data, lat, lon, NWSofficeCallsign, NWSofficeLocation) {
             <div class="forecastText">
             <p><strong>Temperature:</strong> ${period.temperature} ${period.temperatureUnit}</p>
             <p><strong>Wind:</strong> ${period.windSpeed} ${period.windDirection}</p>
-            <p><strong>precipitation Probability:</strong> ${period.probabilityOfPrecipitation.value}${precipitationUnit}</p>
+            <p><strong>Precipitation Probability:</strong> ${period.probabilityOfPrecipitation.value}${precipitationUnit}</p>
             <p><strong>Forecast:</strong> ${period.detailedForecast}</p>
             </div>
         `;
@@ -246,11 +246,72 @@ const NWSofficeIDs = {
     'RNK': 'Blacksburg/Roanoke - Virginia',
     'AKQ': 'Wakefield - Virginia',
     'RLX': 'Charleston - West Virginia',
+    
     // Pacific Region
-
+    'GUM': 'Guam',
+    'HFO': 'Honolulu - Hawaii',
+    
     // Southern Region
+    'BMX': 'Birmingham - Alabama',
+    'HUN': 'Huntsville - Alabama',
+    'MOB': 'Mobile/Pensacola - Alabama',
+    'LZX': 'Little Rock - Arkansas',
+    'JAX': 'Jacksonville - Florida',
+    'KEY': 'Key West - Florida',
+    'MLB': 'Melbourne - Florida',
+    'MFL': 'Miami - Florida',
+    'TAE': 'Tallahassee - Florida',
+    'TBW': 'Tampa - Florida',
+    'FFC': 'Peachtree City/Atlanta - Georgia',
+    'LCH': 'Lake Charles - Louisiana',
+    'LIX': 'New Orleans/Baton Rouge - Louisian',
+    'SHV': 'Shreveport - Louisiana',
+    'JAN': 'Jackson - Mississippi',
+    'ABQ': 'Albuquerque - New Mexico',
+    'OUN': 'Norman/Oklahoma City - Oklahoma',
+    'TSA': 'Tulsa - Oklahoma',
+    'SJU': 'San Juan - Puerto Rico',
+    'MEG': 'Memphis - Tennessee',
+    'MRX': 'Morristown/Knoxville - Tennesee',
+    'OHX': 'Nashville - Tennessee', 
+    'AMA': 'Amarillo - Texas',
+    'EWX': 'Austin/San Antonio - Texas',
+    'BRO': 'Brownsville - Texas',
+    'CRP': 'Corpus Christi - Texas',
+    'EPZ': 'El Paso - Texas',
+    'FWD': 'Fort Worth/Dallas - Texas',
+    'HGX': 'Houston/Galveston - Texas',
+    'LUB': 'Lubbock - Texas',
+    'MAF': 'Midland/Odessa - Texas',
+    'SJT': 'San Angelo - Texas',
 
     // Wester Region
+    'FGZ': 'Flagstaff - Arizona',
+    'PSR': 'Phoenix - Arizona',
+    'TWC': 'Tucson - Arizona',
+    'EKA': 'Eureka - California',
+    'LOX': 'Los Angeles/Oxnard - California',
+    'STO':'Sacramento - California',
+    'SGX': 'San Diego - California',
+    'MTR': 'San Fransisco Bay Area/Monterey - California',
+    'HNX': 'San Joaquin Valley/Hanford - California',
+    'BOI': 'Boise - Idaho',
     'PIH': 'Pocatello - Idaho',
-    'BOI': 'Boise - Idaho'
+    'BYZ': 'Billings - Montana',
+    'GGW': 'Glasgow - Montana',
+    'TFX': 'Great Falls - Montana',
+    'MSO': 'Missoula - Montana',
+    'LKN': 'Elko - Nevada',
+    'VEF': 'Las Vegas - Nevada',
+    'REV': 'Reno - Nevada',
+    'MFR': 'Medford - Oregon',
+    'PDT': 'Pendelton - Oregon',
+    'PQR': 'Portland - Oregon',
+    'SLC': 'Salt Lake City - Utah',
+    'SEW': 'Seattle - Washington',
+    'OTX': 'Spokane - Washington'
+
+    
+
+
 }
