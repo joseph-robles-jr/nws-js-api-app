@@ -126,6 +126,7 @@ margin-bottom: 20px;
   .forecast-grid {
     grid-template-columns: 1fr; /* Stack cards vertically */
     gap: .5rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     
   }
 
