@@ -159,12 +159,12 @@ function displayForecast(data, lat, lon, NWSofficeCallsign, NWSofficeLocation) {
         const forecastElement = document.createElement('div');
         forecastElement.innerHTML = `
             <h2>${period.name}</h2> <img class="weatherimg" alt="weatherimg" src=${period.icon}> </img>
-            <div class="forecastText">
+            <section class="forecastText">
             <p><strong>Temperature:</strong> ${period.temperature} ${period.temperatureUnit}</p>
             <p><strong>Wind:</strong> ${period.windSpeed} ${period.windDirection}</p>
             <p><strong>Precipitation Probability:</strong> ${period.probabilityOfPrecipitation.value}${precipitationUnit}</p>
             <p><strong>Forecast:</strong> ${period.detailedForecast}</p>
-            </div>
+            </section>
         `;
         forecastContainer.appendChild(forecastElement);
     });

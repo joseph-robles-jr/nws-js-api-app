@@ -1,80 +1,103 @@
 * {
-  box-sizing: border-box;
+box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f3f4f6;
-  margin: 0;
-  padding: 0;
-  color: #333;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: #f3f4f6;
+margin: 0;
+padding: 0;
+color: #333;
 }
 
 header {
-  background-color: #473c73;
-  color: white;
-  padding: 2rem;
-  text-align: center;
+background-color: #473c73;
+color: white;
+padding: 2rem;
+text-align: center;
 }
 
 button {
-  background-color: #7d71b6;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  margin-top: 1rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
+background-color: #7d71b6;
+color: white;
+border: none;
+padding: 0.75rem 1.5rem;
+margin-top: 1rem;
+font-size: 1rem;
+border-radius: 4px;
+cursor: pointer;
 }
 
 button:hover {
-  background-color: #30294e;
+background-color: #30294e;
 }
 
 main {
-  padding: 2rem;
+padding: 2rem;
+}
+a {
+color: #f3f4f6;
+text-decoration: none;
 }
 
 #weatherProperties {
-  margin-bottom: 2rem;
+margin-bottom: 2rem;
 }
 
 .forecast-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+display: grid;
+gap: 1.5rem;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
 .forecast-grid div {
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-  transition: box-shadow 0.3s;
+background-color: white;
+/* border: 1px solid #ccc; */
+padding: 1rem;
+border-radius: 8px;
+transition: box-shadow 0.3s;
 }
 
 .forecast-grid div:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+/* color:#473c73; */
+color: white;
+background-color: #7d71b6;
 }
 
 .forecastText p {
-  margin: 0.5rem 0;
+margin: 0.5rem 0;
 }
 
 .weatherimg {
-    padding-top: 5px;
-    padding-right: 5px;
-  width: auto;
-  height: 60px;
-  border-radius: 10px;
-  float: right;
-  margin-left: 1rem;
+padding-top: 5px;
+padding-right: 5px;
+width: fit-content;
+height: 60px;
+border-radius: 0px;
+float: right;
+margin-left: 1rem;
 }
 
 footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #e0e0e0;
-  margin-top: 2rem;
+text-align: center;
+padding: 1rem;
+background-color: #7d71b6;
+margin-top: 2rem;
+}
+
+
+#forecastDump {
+background-color: white;
+color: black;
+border-radius: 10px;
+padding: 20px;
+margin: 10px;
+width: fit-content;
+
+}
+
+#preID {
+margin: 20px;
+margin-bottom: 20px;
 }
