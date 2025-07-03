@@ -42,6 +42,7 @@ text-decoration: none;
 
 #weatherProperties {
 margin-bottom: 2rem;
+text-align: center;
 }
 
 .forecast-grid {
