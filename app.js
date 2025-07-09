@@ -1,5 +1,12 @@
 import NWSofficeIDs from "./NWSofficeIDs.js"; // This is the JSON of the office 3 letter ID and their name. Used by the 'getNWSoffice()' function.
 
+const NWS_HEADERS = {
+    "User-Agent": "jroblesWeatherapp (na, rjosepha@byui.edu)",
+    "Accept": "application/geo+json"
+}; // geo+json includes additional Geo data. Replace with ld+json and program will fail. 
+
+
+
 document.getElementById('fetchForecast').addEventListener('click', fetchForecast);
 
 
@@ -13,7 +20,9 @@ async function fetchForecast() {
         const forecastUrl = await fetchLatLonAPIurl(lat, lon);
         const NWSofficeLocation = await getNWSoffice(forecastUrl);
 
-        const response = await fetch(forecastUrl);
+        const response = await fetch(forecastUrl, {
+            headers: NWS_HEADERS
+        });
         const data = await response.json();
         displayForecast(data, lat, lon, NWSofficeLocation.officeCallsign || 'Unknown', NWSofficeLocation.officeLocation || 'Unknown');
     }
@@ -62,7 +71,9 @@ function getLocation() {
 async function fetchLatLonAPIurl(lat, lon) {
     const apiurl = `https://api.weather.gov/points/${lat},${lon}`;
 
-    const response = await fetch(apiurl);
+    const response = await fetch(apiurl, {
+        headers: NWS_HEADERS
+    });
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
