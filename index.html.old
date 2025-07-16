@@ -14,12 +14,21 @@
         <button id="fetchForecast">Fetch Forecast For Your Locations</button>
     </header>
     <main>
+    <div id="manualLocation" style="display:none; margin-top: 1rem;">
+    <p>Geolocation failed or was denied. Please enter your location manually:</p>
+    <label for="manualLat">Latitude:</label>
+    <input type="text" id="manualLat" placeholder="e.g., 40.7128">
+    <label for="manualLon">Longitude:</label>
+    <input type="text" id="manualLon" placeholder="e.g., -74.0060">
+</div>
+
         <div id="weatherProperties"></div>
         <div id="forecastsContainer">
             <div id="forecastContainer">
             </div>
         </div>
     </main>
+    
     <script type="module" src="app.js"></script>
 </body>
 
