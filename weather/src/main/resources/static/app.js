@@ -1,7 +1,7 @@
 import NWSofficeIDs from "./NWSofficeIDs.js"; // This is the JSON of the office 3 letter ID and their name. Used by the 'getNWSoffice()' function.
 
 const NWS_HEADERS = {
-    "User-Agent": "jroblesWeatherapp (na, rjosepha@byui.edu)",
+    "User-Agent": "jroblesWeatherapp (na, josepharoblesjr@gmail.com)",
     "Accept": "application/geo+json"
 }; // geo+json includes additional Geo data. Replace with ld+json and program will fail. 
 

@@ -1,5 +1,6 @@
 const NWS_HEADERS = {
-    "User-Agent": "jroblesWeatherapp (na, rjosepha@byui.edu)",
+    "User-Agent": "jroblesWeatherapp (weather.ki5tlz.net, josepharoblesjr@gmail.com)",
+    
     "Accept": "application/geo+json"
 }; // geo+json includes additional Geo data. Replace with ld+json and program will fail. 
 
