@@ -60,7 +60,7 @@ function getLocation() {
                 (error) => {
                     reject(new Error(`Geolocation error: ${error.message}`));
                 },
-                { timeout: 10000 }
+                { timeout: 10000 } //This geo location fetch being too low caused mobile to time out and never render the forecast.
             );
         } else {
             reject(new Error('Geolocation is not supported or permission was denied.'));
