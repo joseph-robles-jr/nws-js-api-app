@@ -160,20 +160,16 @@ function displayForecast(data, lat, lon, NWSofficeCallsign, NWSofficeLocation) {
     const periods = data.properties.periods;
 
     periods.forEach(period => {
-        var precipitationUnit = '';
-        if (period.probabilityOfPrecipitation.unitCode === 'wmoUnit:percent') {
-            precipitationUnit = '%';
-        }
-        else {
-            precipitationUnit = '';
-        };
+        const precipitation = period.probabilityOfPrecipitation;
+        const precipitationValue = precipitation?.value ?? 'Unavailable';
+        const precipitationUnit = precipitation?.unitCode === 'wmoUnit:percent' ? '%' : '';
         const forecastElement = document.createElement('div');
         forecastElement.innerHTML = `
             <h2>${period.name}</h2> <img class="weatherimg" alt="weatherimg" src=${period.icon}> </img>
             <section class="forecastText">
             <p><strong>Temperature:</strong> ${period.temperature} ${period.temperatureUnit}</p>
             <p><strong>Wind:</strong> ${period.windSpeed} ${period.windDirection}</p>
-            <p><strong>Precipitation Probability:</strong> ${period.probabilityOfPrecipitation.value}${precipitationUnit}</p>
+            <p><strong>Precipitation Probability:</strong> ${precipitationValue}${precipitationUnit}</p>
             <p><strong>Forecast:</strong> ${period.detailedForecast}</p>
             </section>
         `;
